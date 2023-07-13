@@ -6,7 +6,7 @@ pipeline {
                 docker {
                     // Always use the latest 0.10.x version to pick up bug fixes and new resources.
                     // See https://www.infracost.io/docs/integrations/cicd/#docker-images for other options
-                    image 'infracost/infracost:ci-0.10'
+                    image 'infracost/infracost'
                     args "--user=root --entrypoint=''"
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
                 INFRACOST_VCS_PULL_REQUEST_TITLE = 'Change instance type'
                 INFRACOST_VCS_BRANCH = 'master'
                 INFRACOST_VCS_BASE_BRANCH = 'master'
-                INFRACOST_VCS_COMMIT_SHA = '46774d6349ade46d8064dc9eb28be411e9c48f36'
+                INFRACOST_VCS_COMMIT_SHA = 'a6766d3dfd8f828c2d7c7ff8112b528e5111f2a9'
                 // If you're using Terraform Cloud/Enterprise and have variables or private modules stored
                 // on there, specify the following to automatically retrieve the variables:
                 // INFRACOST_TERRAFORM_CLOUD_TOKEN: credentials('jenkins-infracost-tfc-token')
