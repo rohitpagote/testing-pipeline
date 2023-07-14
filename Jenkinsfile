@@ -71,9 +71,9 @@ pipeline {
     // }
     agent any
     stages {
-        stage('Test') {
+        stage('infracost') {
             steps {
-                sh 'node --version'
+                sh 'infracost --version'
             }
         }
     }
