@@ -22,7 +22,6 @@ pipeline {
             environment {
                 // INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
                 // no_proxy = 'pricing.api.infracost.io'
-                INFRACOST_TLS_INSECURE_SKIP_VERIFY = true
                 INFRACOST_API_KEY = "${PASS}"
                 // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
                 //  These are the minimum required, and you should alter to conform to your specific setup.
@@ -41,6 +40,7 @@ pipeline {
                 // INFRACOST_TERRAFORM_CLOUD_TOKEN: credentials('jenkins-infracost-tfc-token')
                 // Change this if you're using Terraform Enterprise
                 // INFRACOST_TERRAFORM_CLOUD_HOST: app.terraform.io
+                INFRACOST_TLS_INSECURE_SKIP_VERIFY = true
             }
 
             steps {
