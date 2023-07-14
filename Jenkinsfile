@@ -37,9 +37,7 @@ pipeline {
                         echo "The password is : ${PASS}"
                     '''
                 }
-            }
-
-            steps {
+                
                 // Get the infracost version
                 sh 'infracost --version'
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
