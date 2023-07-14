@@ -29,8 +29,8 @@ pipeline {
                 withCredentials([
                     usernamePassword(
                         credentialsId: 'a8374e7e-b007-4497-a068-f26bc554a776', 
-                        usernameVariable: 'jenkins-infracost-api-key', 
-                        passwordVariable: 'INFRACOST_API_KEY'
+                        usernameVariable: 'USER', 
+                        passwordVariable: 'PASS'
                         )]) {
                     sh '''
                         echo "The username is: ${USER}"
