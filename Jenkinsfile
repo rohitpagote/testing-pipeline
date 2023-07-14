@@ -49,9 +49,9 @@ pipeline {
 
                 sh 'cd /tmp/base'
                 sh 'terraform init -lockfile=readonly'
-                sh 'cd ../..'
+                sh 'ls'
 
-                sh 'infracost breakdown --path=/tmp/base'
+                sh 'infracost breakdown --path=.'
 
                 // Generate Infracost JSON file as the baseline, add any required sub-directories to path, e.g. `/tmp/base/PATH/TO/TERRAFORM/CODE`.
                 sh 'infracost breakdown --path=/tmp/base \
