@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // Get the infracost version
                 sh 'infracost --version'
-                curl -i 'https://pricing.api.infracost.io/health -H X-Api-Key: ${PASS}'
+                sh 'curl -i https://pricing.api.infracost.io/health -H X-Api-Key: ico-OJbEftyjeWTWOqSBTUavTPNIlbPVHjz5'
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base'
 
