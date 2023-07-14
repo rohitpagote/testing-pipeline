@@ -37,6 +37,10 @@ pipeline {
                         echo "The password is : ${PASS}"
                     '''
                 }
+
+                environment {
+                    INFRACOST_API_KEY = PASS
+                }
                 
                 // Get the infracost version
                 sh 'infracost --version'
