@@ -47,6 +47,8 @@ pipeline {
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base'
 
+                sh 'infracost breakdown --path=/tmp/base'
+
                 // Generate Infracost JSON file as the baseline, add any required sub-directories to path, e.g. `/tmp/base/PATH/TO/TERRAFORM/CODE`.
                 sh 'infracost breakdown --path=/tmp/base \
                                         --format=json \
@@ -65,11 +67,11 @@ pipeline {
                 //   hide-and-new - Minimize previous comments and create a new one.
                 //   new - Create a new cost estimate comment on every push.
                 // See https://www.infracost.io/docs/features/cli_commands/#comment-on-pull-requests for other options.
-                sh 'infracost comment github --path=/tmp/infracost.json \
-                                             --repo=https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git \
-                                             --pull-request=$GITHUB_PULL_REQUEST_NUMBER \
-                                             --github-token=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 \
-                                             --behavior=update'
+                // sh 'infracost comment github --path=/tmp/infracost.json \
+                //                              --repo=https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git \
+                //                              --pull-request=$GITHUB_PULL_REQUEST_NUMBER \
+                //                              --github-token=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 \
+                //                              --behavior=update'
             }
         }
     }
