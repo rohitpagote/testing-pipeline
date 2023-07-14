@@ -2,9 +2,6 @@ pipeline {
     agent any
     stages {
         stage('infracost') {
-            steps {
-                sh 'infracost --version'
-            }
 
             // Set up any required credentials for posting the comment, e.g. GitHub token, GitLab token
             environment {
@@ -29,6 +26,8 @@ pipeline {
             }
 
             steps {
+                // Get the infracost version
+                sh 'infracost --version'
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=$CHANGE_TARGET --single-branch /tmp/base'
 
