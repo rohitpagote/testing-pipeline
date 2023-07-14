@@ -6,6 +6,7 @@ pipeline {
             // Set up any required credentials for posting the comment, e.g. GitHub token, GitLab token
             environment {
                 // INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
+                Set an API key using infracost configure set api_key ico-OJbEftyjeWTWOqSBTUavTPNIlbPVHjz5.
                 INFRACOST_API_KEY = sh 'infracost configure get api_key'
                 // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
                 //  These are the minimum required, and you should alter to conform to your specific setup.
