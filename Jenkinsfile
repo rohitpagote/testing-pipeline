@@ -47,7 +47,9 @@ pipeline {
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base'
 
+                sh 'cd /tmp/base'
                 sh 'terraform init -lockfile=readonly'
+                sh 'cd ../..'
 
                 sh 'infracost breakdown --path=/tmp/base'
 
