@@ -6,10 +6,7 @@ pipeline {
                 sh 'infracost --version'
             }
         }
-        stage('infracost env variables') {
-            steps {
-                // Set up any required credentials for posting the comment, e.g. GitHub token, GitLab token
-                environment {
+        environment {
                     INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
                     // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
                     //  These are the minimum required, and you should alter to conform to your specific setup.
@@ -29,8 +26,6 @@ pipeline {
                     // Change this if you're using Terraform Enterprise
                     // INFRACOST_TERRAFORM_CLOUD_HOST: app.terraform.io
                 }
-            }
-        }
         stage('infracost execution') {
             steps {
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
