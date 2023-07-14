@@ -21,7 +21,8 @@ pipeline {
             // Set up any required credentials for posting the comment, e.g. GitHub token, GitLab token
             environment {
                 // INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
-                no_proxy = 'pricing.api.infracost.io'
+                // no_proxy = 'pricing.api.infracost.io'
+                
                 INFRACOST_API_KEY = "${PASS}"
                 // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
                 //  These are the minimum required, and you should alter to conform to your specific setup.
@@ -45,6 +46,7 @@ pipeline {
             steps {
                 // Get the infracost version
                 sh 'infracost --version'
+                curl -i 'https://pricing.api.infracost.io/health -H X-Api-Key: ${PASS}'
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base'
 
