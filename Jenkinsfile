@@ -1,32 +1,33 @@
 pipeline {
     agent any
     stages {
-        stage('infracost version') {
+        stage('infracost') {
             steps {
                 sh 'infracost --version'
             }
-        }
-        environment {
-                    INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
-                    // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
-                    //  These are the minimum required, and you should alter to conform to your specific setup.
-                    //  To read more about additional environment variables you can use to customize Infracost Cloud,
-                    //  visit here: https://www.infracost.io/docs/features/environment_variables/#environment-variables-to-set-metadata
-                    INFRACOST_VCS_PROVIDER = 'github'
-                    INFRACOST_VCS_REPOSITORY_URL = 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
-                    INFRACOST_VCS_PULL_REQUEST_URL = 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc/pull/3'
-                    INFRACOST_VCS_PULL_REQUEST_AUTHOR = 'Rohit Pagote'
-                    INFRACOST_VCS_PULL_REQUEST_TITLE = 'Change instance type'
-                    INFRACOST_VCS_BRANCH = 'master'
-                    INFRACOST_VCS_BASE_BRANCH = 'master'
-                    INFRACOST_VCS_COMMIT_SHA = '3ab6d626f5172b205c1a068dbaf346b23bf94e20'
-                    // If you're using Terraform Cloud/Enterprise and have variables or private modules stored
-                    // on there, specify the following to automatically retrieve the variables:
-                    // INFRACOST_TERRAFORM_CLOUD_TOKEN: credentials('jenkins-infracost-tfc-token')
-                    // Change this if you're using Terraform Enterprise
-                    // INFRACOST_TERRAFORM_CLOUD_HOST: app.terraform.io
-                }
-        stage('infracost execution') {
+
+            // Set up any required credentials for posting the comment, e.g. GitHub token, GitLab token
+            environment {
+                INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
+                // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
+                //  These are the minimum required, and you should alter to conform to your specific setup.
+                //  To read more about additional environment variables you can use to customize Infracost Cloud,
+                //  visit here: https://www.infracost.io/docs/features/environment_variables/#environment-variables-to-set-metadata
+                INFRACOST_VCS_PROVIDER = 'github'
+                INFRACOST_VCS_REPOSITORY_URL = 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
+                INFRACOST_VCS_PULL_REQUEST_URL = 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc/pull/3'
+                INFRACOST_VCS_PULL_REQUEST_AUTHOR = 'Rohit Pagote'
+                INFRACOST_VCS_PULL_REQUEST_TITLE = 'Change instance type'
+                INFRACOST_VCS_BRANCH = 'master'
+                INFRACOST_VCS_BASE_BRANCH = 'master'
+                INFRACOST_VCS_COMMIT_SHA = '3ab6d626f5172b205c1a068dbaf346b23bf94e20'
+                // If you're using Terraform Cloud/Enterprise and have variables or private modules stored
+                // on there, specify the following to automatically retrieve the variables:
+                // INFRACOST_TERRAFORM_CLOUD_TOKEN: credentials('jenkins-infracost-tfc-token')
+                // Change this if you're using Terraform Enterprise
+                // INFRACOST_TERRAFORM_CLOUD_HOST: app.terraform.io
+            }
+
             steps {
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=$CHANGE_TARGET --single-branch /tmp/base'
@@ -58,14 +59,3 @@ pipeline {
         }
     }
 }
-
-// pipeline {
-//     agent any
-//     stages {
-//         stage('infracost') {
-//             steps {
-//                 sh 'infracost --version'
-//             }
-//         }
-//     }
-// }
