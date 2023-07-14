@@ -1,11 +1,27 @@
 pipeline {
     agent any
     stages {
+        stage('infracost API key){
+              steps {
+                  withCredentials([
+                    usernamePassword(
+                        credentialsId: 'a8374e7e-b007-4497-a068-f26bc554a776', 
+                        usernameVariable: 'USER', 
+                        passwordVariable: 'PASS'
+                        )]) {
+                    sh '''
+                        echo "The username is: ${USER}"
+                        echo "The password is : ${PASS}"
+                    '''
+                }
+              }
+        }
         stage('infracost') {
 
             // Set up any required credentials for posting the comment, e.g. GitHub token, GitLab token
             environment {
                 // INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
+                INFRACOST_API_KEY = "${PASS}"
                 // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
                 //  These are the minimum required, and you should alter to conform to your specific setup.
                 //  To read more about additional environment variables you can use to customize Infracost Cloud,
@@ -26,22 +42,6 @@ pipeline {
             }
 
             steps {
-                withCredentials([
-                    usernamePassword(
-                        credentialsId: 'a8374e7e-b007-4497-a068-f26bc554a776', 
-                        usernameVariable: 'USER', 
-                        passwordVariable: 'PASS'
-                        )]) {
-                    sh '''
-                        echo "The username is: ${USER}"
-                        echo "The password is : ${PASS}"
-                    '''
-                }
-
-                environment {
-                    INFRACOST_API_KEY = PASS
-                }
-                
                 // Get the infracost version
                 sh 'infracost --version'
                 // Clone the base branch of the pull request (e.g. main/master) into a temp directory.
