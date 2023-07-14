@@ -37,6 +37,7 @@ pipeline {
                         echo "The password is : ${PASS}"
                     '''
                 }
+            }
 
             steps {
                 // Get the infracost version
