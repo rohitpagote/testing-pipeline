@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('infracost API key){
+        stage('infracost API key'){
               steps {
                   withCredentials([
                     usernamePassword(
