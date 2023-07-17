@@ -41,6 +41,7 @@ pipeline {
                 // Change this if you're using Terraform Enterprise
                 // INFRACOST_TERRAFORM_CLOUD_HOST: app.terraform.io
                 // INFRACOST_TLS_INSECURE_SKIP_VERIFY = true
+                INFRACOST_TLS_CA_CERT_FILE='/etc/ssl/certs/ca-certificates.crt'
             }
 
             steps {
@@ -54,7 +55,7 @@ pipeline {
                 sh 'terraform init -lockfile=readonly'
                 sh 'ls'
 
-                sh 'curl -vvv https://pricing.api.infracost.io/ --cacert cacert.pem -k'
+                // sh 'curl -vvv https://pricing.api.infracost.io/ --cacert cacert.pem -k'
 
                 sh 'infracost breakdown --path=.'
 
