@@ -5,7 +5,7 @@ pipeline {
               steps {
                   withCredentials([
                     usernamePassword(
-                        credentialsId: '741ff04d-5da8-41c1-a29f-bc9e2a262283'  //'99b628db-41fb-4ee2-b781-65f90fd8f9b8', 
+                        credentialsId: '741ff04d-5da8-41c1-a29f-bc9e2a262283',  //'99b628db-41fb-4ee2-b781-65f90fd8f9b8', 
                         usernameVariable: 'USER', 
                         passwordVariable: 'PASS'
                         )]) {
