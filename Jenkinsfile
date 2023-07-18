@@ -52,10 +52,6 @@ pipeline {
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base'
 
                 sh 'cd /tmp/base'
-                //sh 'terraform init -lockfile=readonly'
-                sh 'ls'
-
-                // sh 'printenv'
 
                 // sh 'curl -vvv https://pricing.api.infracost.io/ --cacert cacert.pem -k'
 
@@ -66,8 +62,10 @@ pipeline {
                                         --format=json \
                                         --out-file=infracost-base.json'
 
+                sh 'cat infracost-base.json'
+
                 // Generate an Infracost diff and save it to a JSON file.
-                sh 'infracost diff --path=/tmp/base \
+                sh 'infracost diff --path=. \
                                    --format=json \
                                    --compare-to=infracost-base.json \
                                    --out-file=infracost.json'
