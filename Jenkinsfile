@@ -52,10 +52,10 @@ pipeline {
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base'
 
                 sh 'cd /tmp/base'
-                sh 'terraform init -lockfile=readonly'
+                //sh 'terraform init -lockfile=readonly'
                 sh 'ls'
 
-                sh 'curl -vvv https://pricing.api.infracost.io/ --cacert cacert.pem -k'
+                // sh 'curl -vvv https://pricing.api.infracost.io/ --cacert cacert.pem -k'
 
                 sh 'infracost breakdown --path=.'
 
