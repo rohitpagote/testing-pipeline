@@ -70,6 +70,9 @@ pipeline {
                                    --compare-to=infracost-base.json \
                                    --out-file=infracost.json'
 
+                sh 'ls'
+                sh 'pwd'
+
                 // Posts a comment to the PR using the 'update' behavior.
                 // This creates a single comment and updates it. The "quietest" option.
                 // The other valid behaviors are:
