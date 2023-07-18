@@ -55,22 +55,22 @@ pipeline {
                 //sh 'terraform init -lockfile=readonly'
                 sh 'ls'
 
-                sh 'printenv'
+                // sh 'printenv'
 
                 // sh 'curl -vvv https://pricing.api.infracost.io/ --cacert cacert.pem -k'
 
                 sh 'infracost breakdown --path=.'
 
                 // Generate Infracost JSON file as the baseline, add any required sub-directories to path, e.g. `/tmp/base/PATH/TO/TERRAFORM/CODE`.
-                // sh 'infracost breakdown --path=. \
-                //                         --format=json \
-                //                         --out-file=infracost-base.json'
+                sh 'infracost breakdown --path=. \
+                                        --format=json \
+                                        --out-file=infracost-base.json'
 
-                // // Generate an Infracost diff and save it to a JSON file.
-                // sh 'infracost diff --path=/tmp/base \
-                //                    --format=json \
-                //                    --compare-to=infracost-base.json \
-                //                    --out-file=infracost.json'
+                // Generate an Infracost diff and save it to a JSON file.
+                sh 'infracost diff --path=/tmp/base \
+                                   --format=json \
+                                   --compare-to=infracost-base.json \
+                                   --out-file=infracost.json'
 
                 // Posts a comment to the PR using the 'update' behavior.
                 // This creates a single comment and updates it. The "quietest" option.
