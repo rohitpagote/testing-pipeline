@@ -1,28 +1,28 @@
 pipeline {
     agent any
     stages {
-        stage('infracost API key'){
-              steps {
-                  withCredentials([
-                    usernamePassword(
-                        credentialsId: '99b628db-41fb-4ee2-b781-65f90fd8f9b8', 
-                        usernameVariable: 'USER', 
-                        passwordVariable: 'PASS'
-                        )]) {
-                    sh '''
-                        echo "The username is: ${USER}"
-                        echo "The password is : ${PASS}"
-                    '''
-                }
-              }
-        }
+        // stage('infracost API key'){
+        //       steps {
+        //           withCredentials([
+        //             usernamePassword(
+        //                 credentialsId: '99b628db-41fb-4ee2-b781-65f90fd8f9b8', 
+        //                 usernameVariable: 'USER', 
+        //                 passwordVariable: 'PASS'
+        //                 )]) {
+        //             sh '''
+        //                 echo "The username is: ${USER}"
+        //                 echo "The password is : ${PASS}"
+        //             '''
+        //         }
+        //       }
+        // }
         stage('infracost') {
 
             // Set up any required credentials for posting the comment, e.g. GitHub token, GitLab token
             environment {
                 // INFRACOST_API_KEY = credentials('jenkins-infracost-api-key')
                 // no_proxy = 'pricing.api.infracost.io'
-                INFRACOST_API_KEY = "${PASS}"
+                // INFRACOST_API_KEY = "${PASS}"
                 // The following environment variables are required to show Jenkins PRs on Infracost Cloud.
                 //  These are the minimum required, and you should alter to conform to your specific setup.
                 //  To read more about additional environment variables you can use to customize Infracost Cloud,
