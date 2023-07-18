@@ -55,7 +55,7 @@ pipeline {
                 //sh 'terraform init -lockfile=readonly'
                 sh 'ls'
 
-                sh '$PASS'
+                sh 'printenv'
 
                 // sh 'curl -vvv https://pricing.api.infracost.io/ --cacert cacert.pem -k'
 
