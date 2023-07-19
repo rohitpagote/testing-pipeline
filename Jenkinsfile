@@ -108,11 +108,9 @@ def doBreakDown() {
     script {
         sh("""
             pwd;
-            echo "=== Cloning the git repo ===";
-            git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base;
 
             echo "=== print folder contents ===";
-            cd /tmp/base;
+            cd /var/jenkins_home/workspace/infracost-terraform-jenkins-poc-pipeline;
             ls -al;
 
             echo "=== infracost cost breakdown for current tf configuration ===";
