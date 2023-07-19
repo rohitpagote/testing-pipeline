@@ -112,6 +112,7 @@ def doBreakDown() {
             git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base;
 
             echo "=== print folder contents ===";
+            cd /tmp/base;
             ls -al;
 
             echo "=== infracost cost breakdown for current tf configuration ===";
