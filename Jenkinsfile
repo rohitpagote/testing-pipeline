@@ -84,8 +84,6 @@ def doCheckout() {
 }
 
 def createEnv() {
-    createDeploymentDir()
-
     sh("""
         echo "=== removing tfvars file if any"
         rm -f common.auto.tfvars deployment.auto.tfvars provider.env
@@ -94,14 +92,6 @@ def createEnv() {
         pwd
         ls -al
     """)
-}
-
-def createDeploymentDir() {
-    script {
-        sh('''
-            mkdir -p infracost/.aws
-        ''')
-    }
 }
 
 def doBreakDown() {
