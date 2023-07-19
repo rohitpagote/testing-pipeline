@@ -108,6 +108,7 @@ def doBreakDown() {
     script {
         sh("""
             pwd;
+            cd ../../../../
             cd /infracost/.aws;
             pwd;
             echo "=== Cloning the git repo ===";
