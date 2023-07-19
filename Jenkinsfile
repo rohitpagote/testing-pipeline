@@ -108,11 +108,8 @@ def doBreakDown() {
     script {
         sh("""
             pwd;
-            cd ../../../../
-            cd /infracost/.aws;
-            pwd;
             echo "=== Cloning the git repo ===";
-            git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch .;
+            git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git --branch=master --single-branch /tmp/base;
 
             echo "=== print folder contents ===";
             ls -al;
