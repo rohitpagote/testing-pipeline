@@ -53,6 +53,12 @@ pipeline {
             }
         }
     }
+    post {
+        cleanup {
+            echo '=== performing cleanup'
+            deleteDir()
+        }
+    }
 }
 
 def getInfracostVersion() {
@@ -85,6 +91,7 @@ def createEnv() {
         rm -f common.auto.tfvars deployment.auto.tfvars provider.env
 
         echo "=== print folder contents"
+        pwd
         ls -al
     """)
 }
