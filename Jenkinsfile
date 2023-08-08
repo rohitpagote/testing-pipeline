@@ -37,11 +37,11 @@ pipeline {
         //      }
         // }
 
-        stage('Clone') {
-            steps {
-                sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
-            }      
-        }
+        // stage('Clone') {
+        //     steps {
+        //         sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
+        //     }      
+        // }
         
         stage ('push artifact') {
             steps {
