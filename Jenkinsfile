@@ -30,19 +30,19 @@ pipeline {
         }
     }
 
-        stage('Save baseline cost') {
-            when { expression { params.action  == 'create' || params.action  == 'update' } }
-            steps {
-                script {
-                    echo "=== start doUpload ==="
+        // stage('Upload zip to bucket') {
+        //     when { expression { params.action  == 'create' || params.action  == 'update' } }
+        //     steps {
+        //         script {
+        //             echo "=== start doUpload ==="
                     
-                    withAWS(region: "us-east-1",credentials: "3a867201-f05b-49a5-9979-a057eab992af") {
-                        s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "./pipod-api-catalogs-test.zip", bucket: "pipod-deploy-dev", path: "catalogs")
-                    }
+        //             withAWS(region: "us-east-1",credentials: "3a867201-f05b-49a5-9979-a057eab992af") {
+        //                 s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "./pipod-api-catalogs-test.zip", bucket: "pipod-deploy-dev", path: "catalogs")
+        //             }
                     
-                    echo "=== end doUpload ==="
-                }
-            }
+        //             echo "=== end doUpload ==="
+        //         }
+        //     }
          }
 
         //  stage('Checkout 2') {
