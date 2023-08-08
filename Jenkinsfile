@@ -15,16 +15,22 @@ pipeline {
           }
         }
 
-         stage('Checkout 2') {
-             steps {
-                 checkout([
-                    $class: 'GitSCM',
-                    branches: scm.branches,
-                    extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
-                    userRemoteConfigs: [[credentialsId: 'Git-Credentials', url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git']],
-                    doGenerateSubmoduleConfigurations: false
-                ])
-             }
+        //  stage('Checkout 2') {
+        //      steps {
+        //          checkout([
+        //             $class: 'GitSCM',
+        //             branches: scm.branches,
+        //             extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+        //             userRemoteConfigs: [[credentialsId: 'Git-Credentials', url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git']],
+        //             doGenerateSubmoduleConfigurations: false
+        //         ])
+        //      }
+        // }
+
+        stage('Clone) {
+            steps {
+                sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
+            }      
         }
         
         stage ('push artifact') {
