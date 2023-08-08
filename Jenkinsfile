@@ -8,9 +8,9 @@ pipeline {
                 sh 'cd ..'
                 sh 'pwd'
                 sh 'ls'
-                zip zipFile: 'google.zip', archive: false, dir: 'google'
+                zip zipFile: 'google1.zip', archive: false, dir: 'google'
                 sh 'ls'
-                archiveArtifacts artifacts: 'google.zip', fingerprint: true
+                archiveArtifacts artifacts: 'google1.zip', fingerprint: true
                 sh 'ls'
             }
         }
