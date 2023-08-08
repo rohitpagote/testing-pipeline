@@ -43,7 +43,7 @@ pipeline {
         //             echo "=== end doUpload ==="
         //         }
         //     }
-         }
+         // }
 
         //  stage('Checkout 2') {
         //      steps {
