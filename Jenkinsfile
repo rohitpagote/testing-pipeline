@@ -23,12 +23,27 @@ pipeline {
 
             sh "ls -lat"
             sh 'pwd'
-            zip zipFile: 'google1.zip', archive: false, dir: 'google'
+            zip zipFile: 'pipod-api-catalogs-test.zip', archive: false, dir: 'google'
             sh 'ls'
             sh 'pwd'
-            archiveArtifacts artifacts: 'google1.zip', fingerprint: true
+            archiveArtifacts artifacts: 'pipod-api-catalogs-test.zip', fingerprint: true
         }
     }
+
+        stage('Save baseline cost') {
+            when { expression { params.action  == 'create' || params.action  == 'update' } }
+            steps {
+                script {
+                    echo "=== start doUpload ==="
+                    
+                    withAWS(region: "us-east-1",credentials: "3a867201-f05b-49a5-9979-a057eab992af") {
+                        s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "./pipod-api-catalogs-test.zip", bucket: "pipod-deploy-dev", path: "catalogs")
+                    }
+                    
+                    echo "=== end doUpload ==="
+                }
+            }
+         }
 
         //  stage('Checkout 2') {
         //      steps {
