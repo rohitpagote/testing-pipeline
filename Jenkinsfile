@@ -23,6 +23,10 @@ pipeline {
 
             sh "ls -lat"
             sh 'pwd'
+            zip zipFile: 'google1.zip', archive: false, dir: 'google'
+            sh 'ls'
+            sh 'pwd'
+            archiveArtifacts artifacts: 'google1.zip', fingerprint: true
         }
     }
 
