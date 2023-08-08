@@ -31,7 +31,7 @@ pipeline {
     }
 
         stage('Upload zip to bucket') {
-            when { expression { params.action  == 'create' || params.action  == 'update' } }
+            // when { expression { params.action  == 'create' || params.action  == 'update' } }
             steps {
                 script {
                     echo "=== start doUpload ==="
