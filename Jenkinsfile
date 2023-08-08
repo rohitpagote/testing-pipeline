@@ -27,7 +27,7 @@ pipeline {
         //      }
         // }
 
-        stage('Clone) {
+        stage('Clone') {
             steps {
                 sh 'git clone https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
             }      
