@@ -15,6 +15,16 @@ pipeline {
           }
         }
 
+        stage('Checkout external proj') {
+        steps {
+            git branch: 'master',
+                credentialsId: 'Git-Credentials',
+                url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
+
+            sh "ls -lat"
+        }
+    }
+
         //  stage('Checkout 2') {
         //      steps {
         //          checkout([
