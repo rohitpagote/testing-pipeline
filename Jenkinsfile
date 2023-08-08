@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('Checkout 1') {
           steps {
               checkout scmGit(
                   branches: [
@@ -14,6 +14,16 @@ pipeline {
               )
           }
         }   
+
+         stage('Checkout 2') {
+            checkout([
+                $class: 'GitSCM',
+                branches: scm.branches,
+                extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+                userRemoteConfigs: [[credentialsId: 'Git-Credentials', url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git']],
+                doGenerateSubmoduleConfigurations: false
+            ])
+        }
         
         stage ('push artifact') {
             steps {
