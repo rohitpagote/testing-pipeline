@@ -22,6 +22,7 @@ pipeline {
                 url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
 
             sh "ls -lat"
+            sh 'pwd'
         }
     }
 
