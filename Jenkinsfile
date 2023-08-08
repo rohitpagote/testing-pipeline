@@ -1,6 +1,20 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+          steps {
+              checkout scmGit(
+                  branches: [
+                      [name: 'master']
+                  ],
+                  extensions: [],
+                  userRemoteConfigs: [
+                      [credentialsId: 'Git-Credentials', url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git']
+                  ]
+              )
+          }
+        }   
+        
         stage ('push artifact') {
             steps {
                 sh 'ls'
