@@ -5,13 +5,9 @@ pipeline {
             steps {
                 sh 'ls'
                 sh 'pwd'
-                sh 'mkdir archive'
+                zip zipFile: 'google.zip', archive: false, dir: 'google'
                 sh 'ls'
-                sh 'echo test > archive/test.txt'
-                sh 'ls'
-                zip zipFile: 'test.zip', archive: false, dir: 'archive'
-                sh 'ls'
-                archiveArtifacts artifacts: 'test.zip', fingerprint: true
+                archiveArtifacts artifacts: 'google.zip', fingerprint: true
                 sh 'ls'
             }
         }
