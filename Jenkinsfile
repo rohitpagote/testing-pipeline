@@ -37,7 +37,7 @@ pipeline {
                     echo "=== start doUpload ==="
                     
                     withAWS(region: "us-east-1",credentials: "3a867201-f05b-49a5-9979-a057eab992af") {
-                        s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "./pipod-api-catalogs-test.zip", bucket: "pipod-deploy-dev", path: "catalogs")
+                        s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "pipod-api-catalogs-test.zip", bucket: "pipod-deploy-dev", path: "catalogs/")
                     }
                     
                     echo "=== end doUpload ==="
