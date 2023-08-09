@@ -27,7 +27,7 @@ pipeline {
             sh 'ls'
             sh 'pwd'
             archiveArtifacts artifacts: 'pipod-api-catalogs-test.zip', fingerprint: true
-            sh "rm src -r"
+            sh "rm google -r"
         }
     }
 
