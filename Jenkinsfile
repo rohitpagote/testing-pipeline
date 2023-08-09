@@ -42,6 +42,9 @@ pipeline {
                     }
                     
                     echo "=== end doUpload ==="
+
+                    echo "removing the zip file"
+                    sh "rm google.zip"
                 }
             }
          }
