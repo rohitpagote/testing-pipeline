@@ -44,7 +44,7 @@ pipeline {
                     echo "=== end doUpload ==="
 
                     echo "removing the zip file"
-                    sh "rm google.zip"
+                    sh "rm pipod-api-catalogs-test.zip"
                 }
             }
          }
