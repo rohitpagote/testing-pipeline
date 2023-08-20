@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    tools {nodejs "node"}
     stages {
         stage('Checkout 1') {
           steps {
@@ -18,6 +19,7 @@ pipeline {
         stage('Checkout external proj') {
         steps {
             echo "checking the node version"
+            sh "npm config ls"
             sh "infracost --version"
             sh "node --version"
             
