@@ -20,7 +20,7 @@ pipeline {
         steps {
             echo "checking the node version"
             sh "npm config ls"
-            sh "infracost --version"
+            sh "npm --version"
             sh "node --version"
             
             // git branch: 'master',
