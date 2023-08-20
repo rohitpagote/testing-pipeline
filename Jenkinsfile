@@ -18,7 +18,7 @@ pipeline {
         stage('Checkout external proj') {
         steps {
             echo "checking the node version"
-            sh "nodejs --version"
+            sh "node --version"
             // git branch: 'master',
             //     credentialsId: 'Git-Credentials',
             //     url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
