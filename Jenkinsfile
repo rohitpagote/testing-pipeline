@@ -17,37 +17,39 @@ pipeline {
 
         stage('Checkout external proj') {
         steps {
-            git branch: 'master',
-                credentialsId: 'Git-Credentials',
-                url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
+            echo "checking the node version"
+            sh "node -v"
+            // git branch: 'master',
+            //     credentialsId: 'Git-Credentials',
+            //     url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
 
-            sh "ls -lat"
-            sh 'pwd'
-            zip zipFile: 'pipod-api-catalogs-test.zip', archive: false, dir: 'google'
-            sh 'ls'
-            sh 'pwd'
-            archiveArtifacts artifacts: 'pipod-api-catalogs-test.zip', fingerprint: true
-            sh "rm google -r"
+            // sh "ls -lat"
+            // sh 'pwd'
+            // zip zipFile: 'pipod-api-catalogs-test.zip', archive: false, dir: 'google'
+            // sh 'ls'
+            // sh 'pwd'
+            // archiveArtifacts artifacts: 'pipod-api-catalogs-test.zip', fingerprint: true
+            // sh "rm google -r"
         }
     }
 
-        stage('Upload zip to bucket') {
-            // when { expression { params.action  == 'create' || params.action  == 'update' } }
-            steps {
-                script {
-                    echo "=== start doUpload ==="
+        // stage('Upload zip to bucket') {
+        //     // when { expression { params.action  == 'create' || params.action  == 'update' } }
+        //     steps {
+        //         script {
+        //             echo "=== start doUpload ==="
                     
-                    withAWS(region: "us-east-1",credentials: "3a867201-f05b-49a5-9979-a057eab992af") {
-                        s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "pipod-api-catalogs-test.zip", bucket: "pipod-deploy-dev", path: "catalogs/")
-                    }
+        //             withAWS(region: "us-east-1",credentials: "3a867201-f05b-49a5-9979-a057eab992af") {
+        //                 s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "pipod-api-catalogs-test.zip", bucket: "pipod-deploy-dev", path: "catalogs/")
+        //             }
                     
-                    echo "=== end doUpload ==="
+        //             echo "=== end doUpload ==="
 
-                    echo "removing the zip file"
-                    sh "rm pipod-api-catalogs-test.zip"
-                }
-            }
-         }
+        //             echo "removing the zip file"
+        //             sh "rm pipod-api-catalogs-test.zip"
+        //         }
+        //     }
+        //  }
 
         //  stage('Checkout 2') {
         //      steps {
