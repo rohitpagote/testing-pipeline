@@ -18,6 +18,7 @@ pipeline {
         stage('Checkout external proj') {
         steps {
             echo "checking the node version"
+            sh "npm --version"
             sh "node -v"
             // git branch: 'master',
             //     credentialsId: 'Git-Credentials',
