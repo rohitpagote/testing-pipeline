@@ -19,6 +19,7 @@ pipeline {
         steps {
             echo "checking the node version"
             sh "node --version"
+            sh "infracost --version"
             // git branch: 'master',
             //     credentialsId: 'Git-Credentials',
             //     url: 'https://github.com/rohitpagote/infracost-terraform-jenkins-poc.git'
