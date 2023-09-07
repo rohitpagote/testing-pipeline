@@ -36,5 +36,5 @@ variable "file_content" {
 
 resource "local_file" "foo" {
   content  = "var.file_content"
-  filename = "${path.module}/initialAdminUsers"
+  filename = "${path.module}/initialAdminUsers.js"
 }
