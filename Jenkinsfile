@@ -26,7 +26,7 @@ pipeline {
             echo "${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}"
 
             sh "terraform init"
-            sh "terraform apply -var 'file_content=${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}'"
+            sh "terraform apply -var 'file_content=${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}' -auto-approve"
             sh "ls"
             sh "pwd"
             
