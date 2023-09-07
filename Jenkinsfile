@@ -26,9 +26,9 @@ pipeline {
             echo "${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}"
 
             sh "terraform init"
+            terraform plan -var 'file_content=${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}'
             sh "ls"
             sh "pwd"
-            // terraform plan -var 'file_content=${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}'
             
             // git branch: 'master',
             //     credentialsId: 'Git-Credentials',
