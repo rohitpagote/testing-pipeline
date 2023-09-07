@@ -29,6 +29,7 @@ pipeline {
             sh "terraform apply -var 'file_content=${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}' -auto-approve"
             sh "ls"
             sh "pwd"
+            sh "cat initialAdminUsers.js"
             
             // git branch: 'master',
             //     credentialsId: 'Git-Credentials',
