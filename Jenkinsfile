@@ -18,10 +18,12 @@ pipeline {
 
         stage('Checkout external proj') {
         steps {
-            echo "checking the node version"
-            sh "npm config ls"
-            sh "npm --version"
-            sh "node --version"
+            // echo "checking the node version"
+            // sh "npm config ls"
+            // sh "npm --version"
+            // sh "node --version"
+
+            echo "${env.PIPOD_DEPLOY_INITIAL_ADMIN_USERS}"
             
             // git branch: 'master',
             //     credentialsId: 'Git-Credentials',
