@@ -38,3 +38,14 @@ resource "local_file" "foo" {
   content  = var.file_content
   filename = "${path.module}/initialAdminUsers.js"
 }
+
+resource "random_string" "random" {
+  length  = 8
+  special = false
+  lower   = true
+  upper   = false
+}
+
+output "random_string_name" {
+  value = random_string.random.result
+}
